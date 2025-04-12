@@ -4,7 +4,7 @@
 // validated and thus throw no exceptions
 double parse_number(const std::string &expression){
     bool isNegative = false;
-    int i = 0;
+    std::size_t i = 0;
 
     if (expression[i] == '-')
     {
@@ -19,6 +19,7 @@ double parse_number(const std::string &expression){
     double intPart = 0.0;
     while( i < expression.size() && isdigit(expression[i])){
         intPart = intPart * 10 + (expression[i] - '0');
+        i++;
     }
 
     double deciPart = 0.0;
@@ -27,7 +28,7 @@ double parse_number(const std::string &expression){
         double divisor = 10.0;
 
         while (i<expression.size() && isdigit(expression[i])){
-            deciPart += (expression[i] - 0) / divisor;
+            deciPart += (expression[i] - '0') / divisor;
             divisor *= 10.0;
             i++;
         }

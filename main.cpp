@@ -1,27 +1,32 @@
-#include <iostream>
+using namespace std;
 
+#include <iostream>
 #include "calculator.hpp"
 #include <string>
 #include <vector>
 #include <fstream>
 
-using namespace std;
+bool is_valid(string);
 
 const double NUM2 = -123.456;
 
 int main(int argc, char *argv[]) {
     double num1;
     
-    string filename = "";
-    ifstream file(filename);
+    string filename;
     vector<string> lines;
     string line;
+
+    cout << "Enter file name: ";
+    cin >> filename;
+
+    ifstream file(filename);
 
     if (!file.is_open()){
         cerr << "Error opening file: " << filename << endl;
     }
 
-    while (getline(file, line)) {
+    while (getline(file, line)) {        
         if (!line.empty()){
             lines.push_back(line);
         }
@@ -37,6 +42,8 @@ int main(int argc, char *argv[]) {
         else
             cerr << "Invalid number. " << line << endl;
     }
+
+    return 0;
 }
 
 bool is_valid(string expression){
